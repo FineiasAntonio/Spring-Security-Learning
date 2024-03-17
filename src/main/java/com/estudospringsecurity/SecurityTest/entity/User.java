@@ -1,5 +1,6 @@
 package com.estudospringsecurity.SecurityTest.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -28,6 +29,7 @@ public class User implements UserDetails {
 
     private String username;
     private String email;
+    @JsonIgnore
     private String password;
 
     @Enumerated(value = EnumType.STRING)

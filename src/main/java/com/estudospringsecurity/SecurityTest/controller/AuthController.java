@@ -34,13 +34,11 @@ public class AuthController {
     @PostMapping("/login")
     ResponseEntity<String> login(@RequestBody LoginRequest request){
 
-        System.out.println(request);
-
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(request.email(), request.password());
         Authentication authentication = authenticationManager.authenticate(token);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return ResponseEntity.status(HttpStatus.OK).body("TOKEN");
+        return ResponseEntity.status(HttpStatus.OK).body(authService.generateToken(request));
     }
 
 }
